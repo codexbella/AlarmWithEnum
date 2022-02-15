@@ -7,56 +7,51 @@ import static org.junit.jupiter.api.Assertions.*;
 class AlarmTest {
     @Test
     void shouldBeOkBecauseZeroPeoplePlusRed(){
-        assertEquals("Alles cool.", Alarm.shopCoronaAlarm(0, "rot"));
+        assertEquals("Alles cool.", Alarm.customerCheck(0, AlertLevel.RED));
     }
 
     @Test
     void shouldBeOkBecauseZeroPeoplePlusYellow(){
-        assertEquals("Alles cool.", Alarm.shopCoronaAlarm(0, "gelb"));
+        assertEquals("Alles cool.", Alarm.customerCheck(0, AlertLevel.YELLOW));
     }
 
     @Test
     void shouldBeOkBecauseZeroPeoplePlusGreen(){
-        assertEquals("Alles cool.", Alarm.shopCoronaAlarm(0, "gruen"));
+        assertEquals("Alles cool.", Alarm.customerCheck(0, AlertLevel.GREEN));
     }
 
     @Test
     void shouldBeOkBecauseExactly30PeopleAndYellow(){
-        assertEquals("Alles cool.", Alarm.shopCoronaAlarm(30, "gelb"));
+        assertEquals("Alles cool.", Alarm.customerCheck(30, AlertLevel.YELLOW));
     }
 
     @Test
     void shouldBeOkBecauseGreen(){
-        assertEquals("Alles cool.", Alarm.shopCoronaAlarm(31, "gruen"));
+        assertEquals("Alles cool.", Alarm.customerCheck(31, AlertLevel.GREEN));
     }
 
     @Test
     void shouldNotBeOkBecauseMoreThanZeroPeoplePlusRed(){
-        assertEquals("Alarm! -- Alarm!", Alarm.shopCoronaAlarm(1, "rot"));
+        assertEquals("Alarm! -- Alarm!", Alarm.customerCheck(1, AlertLevel.RED));
     }
 
     @Test
     void shouldNotBeOkBecauseMoreThan30People(){
-        assertEquals("Alarm! -- Alarm!", Alarm.shopCoronaAlarm(31, "gelb"));
+        assertEquals("Alarm! -- Alarm!", Alarm.customerCheck(31, AlertLevel.YELLOW));
     }
 
     @Test
     void shouldBeWrongInputAtRed(){
-        assertEquals("Fehler in der Eingabe.", Alarm.shopCoronaAlarm(-1, "rot"));
+        assertEquals("Fehler: Negative Anzahl an Kunden nicht möglich.", Alarm.customerCheck(-1, AlertLevel.RED));
     }
 
     @Test
     void shouldBeWrongInputAtYellow(){
-        assertEquals("Fehler in der Eingabe.", Alarm.shopCoronaAlarm(-1, "gelb"));
+        assertEquals("Fehler: Negative Anzahl an Kunden nicht möglich.", Alarm.customerCheck(-1, AlertLevel.YELLOW));
     }
 
     @Test
     void shouldBeWrongInputAtGreen(){
-        assertEquals("Fehler in der Eingabe.", Alarm.shopCoronaAlarm(-1, "gruen"));
-    }
-
-    @Test
-    void shouldBeWrongInputOfAlertLevel(){
-        assertEquals("Fehler in der Eingabe.", Alarm.shopCoronaAlarm(3, "tuedelue"));
+        assertEquals("Fehler: Negative Anzahl an Kunden nicht möglich.", Alarm.customerCheck(-1, AlertLevel.GREEN));
     }
 }
